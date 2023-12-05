@@ -67,11 +67,12 @@ def run():
     st.set_page_config(
         page_title="Pitcha Descomplica",
         page_icon=":bookmark_tabs:",
-    	)
-	if st.button('Dados'):
-		st.info('sucesso')
-    st.write("Pitcha Descomplica	:bookmark_tabs:")
-    st.text('Demonstração de extração de dados do site Descomplica dos cursos de pós e tratamento dos dados com o uso de robô')
+	if button('Extraçao')
+		try:
+			dados = "asas"
+		except:
+			pass
+
 
     st.sidebar.success("Sobre")
 		st.markdown(
