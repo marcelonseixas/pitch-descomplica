@@ -66,7 +66,7 @@ def Extractor():
 def run():
     st.set_page_config(
         page_title="Pitcha Descomplica",
-        page_icon=":bookmark_tabs:",
+        page_icon=":bookmark_tabs:")
 	if button('Extraçao'):
 		try:
 			dados = "asas"
