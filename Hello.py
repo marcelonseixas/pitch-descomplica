@@ -72,21 +72,18 @@ def run():
             dados = "asas"
         except:
             pass
-
-
     st.sidebar.success("Sobre")
-		st.markdown(
-			"""
-			Esse é meu Pitcha da descomplica.
-			Nesse projeto mostro técnicas de RPA.
-			Automações que podem ajudar no dia a dia de uma corporação,
-			com o uso de robôs para fazer tarefas que demandam tempo.
-			Além de demandar tempo o uso de humanos em algumas tarefas
-			podem não ser tão assetivos quando de um robô,
-			Dentre vários benefícios a redução de custo é a principal,
-			pois um robô trabalha a qualquer horário sem sálario!  
-			
-		"""
-		)
+    st.markdown(
+    """
+    Esse é meu Pitcha da descomplica.
+    Nesse projeto mostro técnicas de RPA.
+    Automações que podem ajudar no dia a dia de uma corporação,
+    com o uso de robôs para fazer tarefas que demandam tempo.
+    Além de demandar tempo o uso de humanos em algumas tarefas
+    podem não ser tão assetivos quando de um robô,
+    Dentre vários benefícios a redução de custo é a principal,
+    pois um robô trabalha a qualquer horário sem sálario!  
+    """
+    )
 
 run()
