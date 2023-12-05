@@ -18,33 +18,33 @@ import requests
 LOGGER = get_logger(__name__)
 
 def Extractor():
-        endpoint_descomplica = 'https://flowpress.prd.descomplica.com.br/graduacao/wp-json/wp/v2/'
-        metadata = []
-        cat_pos = f'{endpoint_descomplica}cat_pos_graduacao?per_page=99&orderby=name&order=asc'
+  metadata = []
+  endpoint_descomplica = 'https://flowpress.prd.descomplica.com.br/graduacao/wp-json/wp/v2/'      
+  cat_pos = f'{endpoint_descomplica}cat_pos_graduacao?per_page=99&orderby=name&order=asc'
 
-        response_cat_pos = requests.get(cat_pos)
-        if response_cat_pos.status_code == 200:
-            content_cat_pos = response_cat_pos.json()
-            for cat in content_cat_pos:
-                id_cat = cat['id']
-                name_cat = cat['name']
-                course_count = cat['course_count']
+  response_cat_pos = requests.get(cat_pos)
+  if response_cat_pos.status_code == 200:
+    content_cat_pos = response_cat_pos.json()
+    for cat in content_cat_pos:
+      id_cat = cat['id']
+      name_cat = cat['name']
+      course_count = cat['course_count']
 
-                url_course = f'{endpoint_descomplica}pos_graduacao_search/?cat_pos_graduacao={id_cat}'
-                respose_menu = requests.get(url_course)
-                list_courses = respose_menu.json()
-                for course in list_courses:
-                    id_course = course['id']
-                    title = course['title']
-                    type_ = course['type']
-                    status = course['status']
-                    old_price = course['acf']['courseOldPrice']
-                    current_price = course['acf']['courseCurrentPrice']
-                    current_price1 = course['acf']['courseCurrentPrice1']
-                    courseDescription = course['acf']['courseDescription']
-                    courseBestsellerIndex = course['acf']['courseBestsellerIndex']
-                    courseNumberOfPayments = course['acf']['courseNumberOfPayments']
-                    data = {
+      url_course = f'{endpoint_descomplica}pos_graduacao_search/?cat_pos_graduacao={id_cat}'
+      respose_menu = requests.get(url_course)
+      list_courses = respose_menu.json()
+      for course in list_courses:
+        id_course = course['id']
+        title = course['title']
+        type_ = course['type']
+        status = course['status']
+        old_price = course['acf']['courseOldPrice']
+        current_price = course['acf']['courseCurrentPrice']
+        current_price1 = course['acf']['courseCurrentPrice1']
+        courseDescription = course['acf']['courseDescription']
+        courseBestsellerIndex = course['acf']['courseBestsellerIndex']
+        courseNumberOfPayments = course['acf']['courseNumberOfPayments']
+        data = {
                         "ID CATEGORIA":int(id_cat),
                         "CATEGORIA":name_cat,
                         "VOLUME CATEGORIA":course_count,
@@ -60,8 +60,8 @@ def Extractor():
                         "DESCRICAO":courseDescription
 
                     }
-                    metadata.append(data)
-            return metadata
+        metadata.append(data)
+    return metadata
 
 def run():
     st.set_page_config(
