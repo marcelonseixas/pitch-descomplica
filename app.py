@@ -40,7 +40,7 @@ def Extractor():
                         "VALOR ANTERIOR":old_price,
                         "VALOR ATUAL":current_price,
                         #"AJUSTE ANTERIOR":current_price1,
-                        "MAIS VENDIDO":courseBestsellerIndex,
+                        "RANKING":courseBestsellerIndex,
                         "PARCELAMENTO":courseNumberOfPayments,
                         "DESCRICAO":courseDescription
                     }
@@ -82,7 +82,7 @@ def main():
         options = st.multiselect(
                     'Selecione as colunas para visualização',
                     ['ID CATEGORIA', 'CATEGORIA', 'VOLUME CAT', 'ID CURSO','CURSO','TIPO','STATUS',
-                    'VALOR ANTERIOR','VALOR ATUAL','COLOCACAO','PARCELAMENTO','DESCRICAO'],
+                    'VALOR ANTERIOR','VALOR ATUAL','RANKING','PARCELAMENTO','DESCRICAO'],
 
                     ['CURSO','VALOR ATUAL']
                     )
