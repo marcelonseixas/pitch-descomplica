@@ -92,8 +92,6 @@ def main():
             st.success('Extração concluída!')
             df = pd.DataFrame(dados_df, columns=options)
             st.dataframe(df)
-    
-            
-                 
+                  
 if __name__ == "__main__":
     main()
