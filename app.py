@@ -69,7 +69,9 @@ def main():
     with tab1:
         st.header("Dados em planilha")
         if st.button('Extrair dados em planilha'):
-            dados_df = Extractor()
+            with st.spinner('Extraindo dados aguarde...'):
+                dados_df = Extractor()
+            st.success('Extração concluída!')
             df = pd.DataFrame(dados_df)
             st.dataframe(df)
 
@@ -85,9 +87,11 @@ def main():
                     ['CURSO','VALOR ATUAL']
                     )
         if st.button('Extrair em planilha personalizado'):
+            with st.spinner('Extraindo dados aguarde...'):
                 dados_df = Extractor()
-                df = pd.DataFrame(dados_df, columns=options)
-                st.dataframe(df)
+            st.success('Extração concluída!')
+            df = pd.DataFrame(dados_df, columns=options)
+            st.dataframe(df)
     
             
                  
