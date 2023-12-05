@@ -69,28 +69,27 @@ def run():
         page_icon=":bookmark_tabs:",
     )
 
-    st.write("# Welcome to Streamlit! 👋")
-
-    st.sidebar.success("Select a demo above.")
-
+    st.write("Pitcha Descomplica	:bookmark_tabs:")
+    st.text('Demonstração de extração de dados do site Descomplica dos cursos de pós e tratamento dos dados com o uso de robô')
+    if st.button('Extrair dados')
+      dados_df = Extractor()
+      if len(dados_df) > 0:
+        df = pd.DataFrame(dados_df) # <- gera o Dataframe aqui
+        st.dataframe(df)
+    st.sidebar.success("Sobre")
     st.markdown(
         """
-        Streamlit is an open-source app framework built specifically for
-        Machine Learning and Data Science projects.
-        **👈 Select a demo from the sidebar** to see some examples
-        of what Streamlit can do!
-        ### Want to learn more?
-        - Check out [streamlit.io](https://streamlit.io)
-        - Jump into our [documentation](https://docs.streamlit.io)
-        - Ask a question in our [community
-          forums](https://discuss.streamlit.io)
-        ### See more complex demos
-        - Use a neural net to [analyze the Udacity Self-driving Car Image
-          Dataset](https://github.com/streamlit/demo-self-driving)
-        - Explore a [New York City rideshare dataset](https://github.com/streamlit/demo-uber-nyc-pickups)
+        Esse é meu Pitcha da descomplica.
+        Nesse projeto mostro técnicas de RPA.
+        Automações que podem ajudar no dia a dia de uma corporação,
+        com o uso de robôs para fazer tarefas que demandam tempo.
+        Além de demandar tempo o uso de humanos em algumas tarefas
+        podem não ser tão assetivos quando de um robô,
+        Dentre vários benefícios a redução de custo é a principal,
+        pois um robô trabalha a qualquer horário sem sálario!  
+        
     """
     )
 
 
-if __name__ == "__main__":
     run()
