@@ -67,11 +67,11 @@ def run():
     st.set_page_config(
         page_title="Pitcha Descomplica",
         page_icon=":bookmark_tabs:")
-	if button('Extraçao'):
-		try:
-			dados = "asas"
-		except:
-			pass
+    if button('Extraçao'):
+        try:
+            dados = "asas"
+        except:
+            pass
 
 
     st.sidebar.success("Sobre")
