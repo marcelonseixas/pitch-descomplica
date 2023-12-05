@@ -71,15 +71,7 @@ def run():
 
     st.write("Pitcha Descomplica	:bookmark_tabs:")
     st.text('Demonstração de extração de dados do site Descomplica dos cursos de pós e tratamento dos dados com o uso de robô')
-    if st.button('Extrair dados'):
-    	try:
-        	dados_df = Extractor()
-			if len(dados_df) > 0:
-				df = pd.DataFrame(dados_df) # <- gera o Dataframe aqui
-				st.dataframe(df)
-		except:
-        	st.warning('Erro ao gerar dados')
-			pass
+
     st.sidebar.success("Sobre")
     st.markdown(
         """
