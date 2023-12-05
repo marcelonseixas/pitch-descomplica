@@ -67,9 +67,11 @@ def run():
     st.set_page_config(
         page_title="Pitcha Descomplica",
         page_icon=":bookmark_tabs:")
-    if button('Extraçao'):
+    if st.button('Extraçao'):
         try:
-            dados = "asas"
+            dados_df = Extractor()
+            df = pd.DataFrame(dados_df)
+            st.dataframe(df)
         except:
             pass
     st.sidebar.success("Sobre")
