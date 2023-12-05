@@ -30,67 +30,66 @@ def Extractor():
                     courseBestsellerIndex = course['acf']['courseBestsellerIndex']
                     courseNumberOfPayments = course['acf']['courseNumberOfPayments']
                     data = {
-                        "ID CATEGORIA":id_cat,
+                        "ID CATEGORIA":str(id_cat),
                         "CATEGORIA":name_cat,
-                        "CURSOS NA CATEGORIA":course_count,
-                        "ID CURSO":id_course,
-                        "TITULO":title,
-                        "TIPO":type,
+                        "VOLUME CAT":course_count,
+                        "ID CURSO":str(id_course),
+                        "CURSO":title,
+                        "TIPO":str(type).replace('_',' '),
                         "STATUS":status,
                         "VALOR ANTERIOR":old_price,
                         "VALOR ATUAL":current_price,
-                        "AJUSTE ANTERIOR":current_price1,
-                        "COLOCACAO":courseBestsellerIndex,
+                        #"AJUSTE ANTERIOR":current_price1,
+                        "MAIS VENDIDO":courseBestsellerIndex,
                         "PARCELAMENTO":courseNumberOfPayments,
                         "DESCRICAO":courseDescription
-
                     }
                     metadata.append(data)
             return metadata
 def main():
     st.title('Robotic Process Automation')
-    st.text('Rapagem de dados site Descomplica')
-    st.text('Para extrair dados dos cursos pós clique abaixo')
-    #st.set_page_config(page_title="Pitcha Descomplica",page_icon=":bookmark_tabs:,")
-    
-    
-    st.write("Pitcha Descomplica	:bookmark_tabs:")
-    st.text('Demonstração de extração de dados do site Descomplica dos cursos de pós e tratamento dos dados com o uso de robô')
-
-    if st.button('Extrair Dataframe'):
+    st.markdown('''
+            Extação de dados usando RPA demostrativo.
+            A Extração de dados se torna muito mais rápida e assertiva com a utilização de RPA.
+            Além da extração é possível visualizar e personalizar os dados.
             
-        dados_df = Extractor()
-        if len(dados_df) > 0:
-                df = pd.DataFrame(dados_df) # <- gera o Dataframe aqui
+            Extração do link https://descomplica.com.br/pos-graduacao/ 
 
-                tab1, tab2, tab3 = st.tabs(["Dados em Dataframe", "Dados em gráfico", "Personalizar dados"])
+            Os dados são extraídos do próprio site usando um RPA que trata os dados e aprensenta nesse site.
+            by: Marcelo Seixas     
+            ''')
+    #st.set_page_config(page_title="Pitcha Descomplica",page_icon=":bookmark_tabs:,")
+    st.info('Clique abaixo nas opções de extação ')
+    
+    st.write("Pitcha Descomplica	:bookmark_tabs: :black_left_pointing_double_triangle_with_vertical_bar: :rewind: \
+            :black_right_pointing_triangle_with_double_vertical_bar: 	:double_vertical_bar: :fast_forward: :black_right_pointing_double_triangle_with_vertical_bar:   ")
 
-                with tab1:
-                    st.header("Dados em Dataframe")
-                    df = pd.DataFrame(dados_df)
-                    st.dataframe(df)
+    tab1, tab2 = st.tabs(["Dados em Dataframe", "Personalizar dados"])
 
-                with tab2:
-                    st.header("Dados em gráfico")
-                    df = pd.DataFrame(dados_df)
-                    st.dataframe(df)
-                    st.line_chart(df, y="VALOR ATUAL", x='TITULO', color='VALOR ANTERIOR')
+    with tab1:
+        st.header("Dados em planilha")
+        if st.button('Extrair dados em planilha'):
+            dados_df = Extractor()
+            df = pd.DataFrame(dados_df)
+            st.dataframe(df)
 
-                with tab3:
-                    st.header("Personalizar dados")
+ 
+    with tab2:
+        st.header("Planilha personalizada")
 
-                    options = st.multiselect(
+        options = st.multiselect(
                     'Selecione as colunas para visualização',
-                    ['ID CATEGORIA', 'CATEGORIA', 'CURSOS NA CATEGORIA', 'ID CURSO','TITULO','TIPO','STATUS',
-                    'VALOR ANTERIOR','VALOR ATUAL','AJUSTE ANTERIOR','VALOR ATUAL','COLOCACAO','PARCELAMENTO','DESCRICAO'],
+                    ['ID CATEGORIA', 'CATEGORIA', 'VOLUME CAT', 'ID CURSO','CURSO','TIPO','STATUS',
+                    'VALOR ANTERIOR','VALOR ATUAL','COLOCACAO','PARCELAMENTO','DESCRICAO'],
 
-                    ['TITULO','VALOR ATUAL']
+                    ['CURSO','VALOR ATUAL']
                     )
-
-                    df = pd.DataFrame(dados_df, columns=options)
-                    st.dataframe(df)
-        else:
-            st.warning('Erro ao gerar dados')
+        if st.button('Extrair em planilha personalizado'):
+                dados_df = Extractor()
+                df = pd.DataFrame(dados_df, columns=options)
+                st.dataframe(df)
+    
+            
                  
 if __name__ == "__main__":
     main()
