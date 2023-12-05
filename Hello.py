@@ -74,11 +74,12 @@ def run():
     if st.button('Extrair dados'):
     	try:
         	dados_df = Extractor()
-      	except:
+			if len(dados_df) > 0:
+				df = pd.DataFrame(dados_df) # <- gera o Dataframe aqui
+				st.dataframe(df)
+		except:
         	st.warning('Erro ao gerar dados')
-    if len(dados_df) > 0:
-        df = pd.DataFrame(dados_df) # <- gera o Dataframe aqui
-        st.dataframe(df)
+			pass
     st.sidebar.success("Sobre")
     st.markdown(
         """
