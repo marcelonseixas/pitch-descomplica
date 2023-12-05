@@ -15,6 +15,7 @@
 import streamlit as st
 from streamlit.logger import get_logger
 import requests
+import pandas as pd
 LOGGER = get_logger(__name__)
 
 def Extractor():
@@ -72,11 +73,10 @@ def run():
             metadata = []
             cat_pos = f'{endpoint_descomplica}cat_pos_graduacao?per_page=99&orderby=name&order=asc'
             response_cat_pos = requests.get(cat_pos)
-            #if response_cat_pos.status_code == 200:
-            st.info(f'{response_cat_pos.status_code}')
-            #dados_df = Extractor()
-            #df = pd.DataFrame(dados_df)
-            #st.dataframe(df)
+            if response_cat_pos.status_code == 200:
+                dados_df = Extractor()
+                df = pd.DataFrame(dados_df)
+                st.dataframe(df)
         except:
             pass
     st.sidebar.success("Sobre")
