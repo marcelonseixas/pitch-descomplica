@@ -68,9 +68,15 @@ def run():
         page_icon=":bookmark_tabs:")
     if st.button('Extraçao'):
         try:
-            dados_df = Extractor()
-            df = pd.DataFrame(dados_df)
-            st.dataframe(df)
+            endpoint_descomplica = 'https://flowpress.prd.descomplica.com.br/graduacao/wp-json/wp/v2/'
+            metadata = []
+            cat_pos = f'{endpoint_descomplica}cat_pos_graduacao?per_page=99&orderby=name&order=asc'
+            response_cat_pos = requests.get(cat_pos)
+            #if response_cat_pos.status_code == 200:
+            st.info(f'{response_cat_pos.status_code}')
+            #dados_df = Extractor()
+            #df = pd.DataFrame(dados_df)
+            #st.dataframe(df)
         except:
             pass
     st.sidebar.success("Sobre")
