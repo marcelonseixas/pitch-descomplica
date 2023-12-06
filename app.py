@@ -1,7 +1,7 @@
 import pandas as pd
 import streamlit as st
 import requests
-
+import time
 def Extractor():
         endpoint_descomplica = 'https://flowpress.prd.descomplica.com.br/graduacao/wp-json/wp/v2/'
         metadata = []
@@ -39,7 +39,6 @@ def Extractor():
                         "STATUS":status,
                         "VALOR ANTERIOR":old_price,
                         "VALOR ATUAL":current_price,
-                        #"AJUSTE ANTERIOR":current_price1,
                         "RANKING":courseBestsellerIndex,
                         "PARCELAMENTO":courseNumberOfPayments,
                         "DESCRICAO":courseDescription
@@ -47,51 +46,45 @@ def Extractor():
                     metadata.append(data)
             return metadata
 def main():
-    st.title('Robotic Process Automation')
-    st.markdown('''
-            Extação de dados usando RPA demostrativo.
-            A Extração de dados se torna muito mais rápida e assertiva com a utilização de RPA.
-            Além da extração é possível visualizar e personalizar os dados.
-            
-            Extração do link https://descomplica.com.br/pos-graduacao/ 
-
-            Os dados são extraídos do próprio site usando um RPA que trata os dados e aprensenta nesse site.
-            by: Marcelo Seixas     
+    st.set_page_config(page_title="Pitcha Descomplica",page_icon=":bookmark_tabs:,")
+    st.title('Robotic Process Automation (RPA)')
+    st.markdown("Marcelo Seixas - Pitch Descomplica :bookmark_tabs:")
+    st.markdown('''RPA raspagem de dados, demonstração de extração do link https://descomplica.com.br/pos-graduacao/ 
+            Os dados são extraídos do próprio site usando uma técnica chamada "Scrap" e transforma os dados em planilha.  
             ''')
-    #st.set_page_config(page_title="Pitcha Descomplica",page_icon=":bookmark_tabs:,")
-    st.info('Clique abaixo nas opções de extação ')
     
-    st.write("Pitcha Descomplica	:bookmark_tabs: :black_left_pointing_double_triangle_with_vertical_bar: :rewind: \
-            :black_right_pointing_triangle_with_double_vertical_bar: 	:double_vertical_bar: :fast_forward: :black_right_pointing_double_triangle_with_vertical_bar:   ")
-
+    st.markdown('Clique abaixo nas opções de extação 	:point_down: ')
     tab1, tab2 = st.tabs(["Dados em Dataframe", "Personalizar dados"])
 
     with tab1:
-        st.header("Dados em planilha")
+        st.text("Dados em planilha")
         if st.button('Extrair dados em planilha'):
-            with st.spinner('Extraindo dados aguarde...'):
+            with st.status("Iniciando RPA...", expanded=True) as status:
+                st.write("Acessando https://descomplica.com.br/pos-graduacao/...")
+                st.write('Coletando informações do HTML...')
                 dados_df = Extractor()
-            st.success('Extração concluída!')
+                status.update(label="Dados coletados com sucesso!", state="complete", expanded=False)
             df = pd.DataFrame(dados_df)
             st.dataframe(df)
-
- 
     with tab2:
-        st.header("Planilha personalizada")
+        st.text("Planilha personalizada")
 
         options = st.multiselect(
                     'Selecione as colunas para visualização',
                     ['ID CATEGORIA', 'CATEGORIA', 'VOLUME CAT', 'ID CURSO','CURSO','TIPO','STATUS',
                     'VALOR ANTERIOR','VALOR ATUAL','RANKING','PARCELAMENTO','DESCRICAO'],
 
-                    ['CURSO','VALOR ATUAL']
+                    ['CURSO','DESCRICAO']
                     )
         if st.button('Extrair em planilha personalizado'):
-            with st.spinner('Extraindo dados aguarde...'):
+            
+            with st.status("Iniciando RPA...", expanded=True) as status:
+                st.write("Acessando https://descomplica.com.br/pos-graduacao/...")
+                st.write('Coletando informações do HTML...')
                 dados_df = Extractor()
-            st.success('Extração concluída!')
+                status.update(label="Dados coletados com sucesso!", state="complete", expanded=False)
             df = pd.DataFrame(dados_df, columns=options)
             st.dataframe(df)
-                  
+                 
 if __name__ == "__main__":
     main()
