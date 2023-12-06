@@ -49,8 +49,8 @@ def main():
     st.set_page_config(page_title="Pitcha Descomplica",page_icon=":bookmark_tabs:,")
     st.title('Robotic Process Automation (RPA)')
     st.markdown("Marcelo Seixas - Pitch Descomplica :bookmark_tabs:")
-    st.markdown('''RPA raspagem de dados feito 100% em Python, demonstração de extração do link https://descomplica.com.br/pos-graduacao/ 
-            Os dados são extraídos do próprio site usando uma técnica chamada "Scrap" e transforma os dados em planilha.  
+    st.markdown('''RPA raspagem de dados feito 100% em Python, demonstração de extração de dados, do link https://descomplica.com.br/pos-graduacao/ 
+            Os dados são extraídos do próprio site usando uma técnica chamada "Scrap" ou "Raspagem" e transforma os dados em planilha.  
             ''')
     
     st.markdown('Clique abaixo nas opções de extação 	:point_down: ')
