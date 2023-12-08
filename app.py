@@ -53,7 +53,7 @@ def main():
             Os dados são extraídos do próprio site usando uma técnica chamada "Scrap" ou "Raspagem" e transforma os dados em planilha.  
             ''')
     
-    st.markdown('Clique abaixo nas opções de extação 	:point_down: ')
+    st.markdown('Clique abaixo nas opções de extração 	:point_down: ')
     tab1, tab2 = st.tabs(["Dados em Dataframe", "Personalizar dados"])
 
     with tab1:
